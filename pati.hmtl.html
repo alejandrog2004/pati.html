@@ -1,0 +1,119 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pregunta especial</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #ffccdd;
+            margin: 0;
+            overflow: hidden;
+        }
+
+            /* Fondo rosado con corazones generados */
+            body::before {
+                content: "";
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(45deg, #ffccdd 25%, transparent 25%), linear-gradient(-45deg, #ffccdd 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #ffccdd 75%), linear-gradient(-45deg, transparent 75%, #ffccdd 75%);
+                background-size: 50px 50px;
+                background-position: 0 0, 0 25px, 25px -25px, -25px 0px;
+                z-index: -1;
+            }
+
+        #container {
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #d63384;
+        }
+
+        #nameForm, #questionContainer {
+            display: none;
+        }
+
+        #nameInput {
+            width: 100%;
+            max-width: 300px;
+            padding: 10px;
+            font-size: 18px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #ff69b4;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+            button:hover {
+                background-color: #ff85c1;
+            }
+
+        @media screen and (max-width: 600px) {
+            input, button {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h2 id="introText">Introduce tu nombre por favor:</h2>
+        <div id="nameForm">
+            <input type="text" id="nameInput" placeholder="Escribe tu nombre"
+                   autocorrect="off" autocapitalize="none" autocomplete="off">
+            <button onclick="showQuestion()">Aceptar</button>
+        </div>
+        <div id="questionContainer">
+            <h2 id="question"></h2>
+            <button onclick="showLoveMessage()">Sí</button>
+            <button onclick="showLoveMessage()">Sí</button>
+        </div>
+        <h2 id="finalMessage" style="display:none;">Lo sabía, te amo mucho mi amor ❤️</h2>
+    </div>
+
+    <script>
+        window.onload = function () {
+            console.log("Campo de entrada cargado correctamente");
+            document.getElementById("nameForm").style.display = "block";
+        };
+
+        function showQuestion() {
+            const name = document.getElementById("nameInput").value;
+            if (name) {
+                document.getElementById("introText").style.display = "none";
+                document.getElementById("nameForm").style.display = "none";
+                document.getElementById("questionContainer").style.display = "block";
+                document.getElementById("question").innerText = name + ", ¿quieres ser mi novia?";
+            } else {
+                alert("Por favor, introduce tu nombre.");
+            }
+        }
+
+        function showLoveMessage() {
+            document.getElementById("questionContainer").style.display = "none";
+            document.getElementById("finalMessage").style.display = "block";
+        }
+    </script>
+</body>
+</html>
